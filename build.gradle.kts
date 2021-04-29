@@ -12,7 +12,6 @@ repositories { mavenCentral()  }
 dependencies {
     implementation("org.scala-lang:scala-library:2.12.11")
 
-    testImplementation("junit:junit:4.12")
     testImplementation("org.scalatest:scalatest_2.12:3.0.1")
     testRuntimeOnly("org.pegdown:pegdown:1.4.2")
     //testImplementation("org.devzendo:scalacheck-contrib_2.11:1.0.0")
@@ -22,14 +21,15 @@ dependencies {
     testImplementation("org.scalamock:scalamock-scalatest-support_2.12:3.5.0")
 
     testImplementation("io.cucumber:cucumber-scala_2.12:2.0.1")
+    // N.B.: Cucumber is based on JUnit 4. If you’re using JUnit 5, remember to include junit-vintage-engine dependency, as well.
     testImplementation("io.cucumber:cucumber-junit:2.4.0") // needed for runner (cucumber.api.junit.Cucumber)
     //testImplementation("io.cucumber:cucumber-java:2.4.0")
 
     testImplementation("org.seleniumhq.selenium:selenium-java:2.35.0")
 
+    // testImplementation("junit:junit:4.12") // Junit 4
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.1.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.1.0")
-    testCompileOnly("junit:junit:4.12")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.1.0")
     testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.1.0")
 }
 
@@ -65,14 +65,17 @@ tasks {
     }
     named<Test>("test") {
         //dependsOn("scalaTest")
-        useJUnitPlatform {
-            includeEngines("junit-vintage")
-        }
+        // useJUnit() // JUnit 4 runner infrastructure
+        // useJUnitPlatform() // enable JUnit Platform (aka JUnit 5) support
+        // useJUnitPlatform { includeEngines("junit-vintage")  } // JUnit 4 tests on JUnit Platform
+        useJUnitPlatform { includeEngines("junit-vintage", "junit-jupiter")  } // JUnit 4 + JUnit 5
         testLogging.events("failed","passed","skipped")
         testLogging.showStandardStreams = true
+        testLogging.displayGranularity = 0 // max granularity
         systemProperties(System.getProperties().map { Pair<String,String>(it.key.toString(), it.value.toString()) }.toMap())
     }
 }
+
 
 // gradle test --rerun-tasks
 // gradle cuke --rerun-tasks
