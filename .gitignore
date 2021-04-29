@@ -10,3 +10,4 @@ classes
 build
 .gradle
 .idea
+.bsp/
