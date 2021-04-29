@@ -27,11 +27,15 @@ dependencies {
 
     testImplementation("org.seleniumhq.selenium:selenium-java:2.35.0")
 
+    testImplementation("com.tngtech.archunit:archunit:0.18.0")
+
     // testImplementation("junit:junit:4.12") // Junit 4
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.1")
     testImplementation("org.junit.platform:junit-platform-launcher:1.7.1") // for org.junit.platform stuff (cf. SomeJUnit5Runner)
     testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.7.1")
+
+    testRuntimeOnly("org.slf4j:slf4j-log4j12:1.7.26")
 }
 
 tasks.withType<ScalaCompile> {

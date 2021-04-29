@@ -1,4 +1,4 @@
-package testLecture.code.e4bdd
+package testLecture.code.e5more
 
 import org.junit.runner.RunWith
 import org.scalatest.concurrent.Eventually._

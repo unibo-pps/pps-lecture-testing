@@ -16,8 +16,10 @@ lazy val root = (project in file("."))
       // N.B.: Cucumber is based on JUnit 4. If you’re using JUnit 5, remember to include junit-vintage-engine dependency, as well.
       "io.cucumber" % "cucumber-junit" % "2.4.0" % Test,
       "org.scalacheck" %% "scalacheck" % "1.14.0" % Test,
-      "org.scalamock" %% "scalamock-scalatest-support" % "3.5.0" % Test
-    ),
+      "org.scalamock" %% "scalamock-scalatest-support" % "3.5.0" % Test,
+      "com.tngtech.archunit" % "archunit" % "0.18.0" % Test,
+      "org.slf4j" % "slf4j-log4j12" % "1.7.26" % Test
+),
     crossPaths := false, // https://github.com/sbt/junit-interface/issues/35
     Test / parallelExecution := false
   )
