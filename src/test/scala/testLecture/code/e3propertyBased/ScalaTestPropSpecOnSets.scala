@@ -1,10 +1,10 @@
-package testLecture.code
+package testLecture.code.e3propertyBased
 
 import org.junit.runner.RunWith
 import org.scalacheck.{Gen, Prop}
 import org.scalatest.junit.JUnitRunner
-import org.scalatest.{Matchers, PropSpec}
 import org.scalatest.prop.{Checkers, PropertyChecks}
+import org.scalatest.{Matchers, PropSpec}
 
 import scala.collection.immutable.{BitSet, HashSet, TreeSet}
 

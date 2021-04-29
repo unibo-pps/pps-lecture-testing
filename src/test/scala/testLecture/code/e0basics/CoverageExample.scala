@@ -1,8 +1,9 @@
-package testLecture.code
+package testLecture.code.e0basics
 
 import org.junit.runner.RunWith
 import org.scalatest.FunSuite
 import org.scalatest.junit.JUnitRunner
+import testLecture.code.ProgramToCover
 
 // sbt
 // > coverage

@@ -1,6 +1,5 @@
-package testLecture.code
+package testLecture.code.e0junit
 
-import org.junit.runner.RunWith
 import u02.BTrees.Tree._
 
 // JUnit 4
@@ -8,8 +7,8 @@ import u02.BTrees.Tree._
 // import org.junit.Assert._
 
 // JUnit 5
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions._
+import org.junit.jupiter.api.Test
 
 class BTreesTest {
   val tree = Branch(Branch(Leaf(1),Leaf(2)),Leaf(1))

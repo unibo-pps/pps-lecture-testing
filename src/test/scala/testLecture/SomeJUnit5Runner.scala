@@ -6,7 +6,7 @@ import org.junit.platform.engine.discovery.DiscoverySelectors.{selectClass, sele
 import org.junit.platform.launcher.TagFilter
 import org.junit.platform.launcher.core.{LauncherDiscoveryRequestBuilder, LauncherFactory}
 import org.junit.platform.launcher.listeners.SummaryGeneratingListener
-import testLecture.code.BTreesTest
+import testLecture.code.e0junit.BTreesTest
 
 /**
   * Example to show how JUnit Platform may be used to run tests, programmatically.

@@ -1,10 +1,10 @@
-package testLecture.code
+package testLecture.code.e4bdd
 
 import org.junit.runner.RunWith
-import org.scalatest.selenium._
-import org.scalatest.{FlatSpec, Matchers}
 import org.scalatest.concurrent.Eventually._
 import org.scalatest.junit.JUnitRunner
+import org.scalatest.selenium._
+import org.scalatest.{FlatSpec, Matchers}
 
 import scala.concurrent.duration._
 

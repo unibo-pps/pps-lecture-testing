@@ -1,15 +1,10 @@
-package testLecture.code
+package testLecture
 
 import org.junit.runner.Description
-import org.scalacheck._
-import org.scalacheck.{Test => SchkTest}
-import org.scalacheck.Test.Parameters
 import org.junit.runner.notification.{Failure, RunNotifier}
-import org.scalacheck.Prop.Result
-import java.lang.{Boolean, Throwable}
-
+import org.scalacheck.Test.Parameters
 import org.scalacheck.util.ConsoleReporter
-import org.scalacheck.util.Pretty.Params
+import org.scalacheck.{Test => ScalaCheckTest, _}
 
 // NOTE: slightly adapted from scalacheck-contrib
 
@@ -24,7 +19,7 @@ import org.scalacheck.util.Pretty.Params
   */
 class ScalaCheckJUnitRunner(suiteClass: java.lang.Class[Properties]) extends org.junit.runner.Runner {
 
-  private val properties = suiteClass.newInstance
+  private val properties = suiteClass.getDeclaredConstructor().newInstance()
 
   lazy val getDescription = createDescription(properties)
 
@@ -38,16 +33,16 @@ class ScalaCheckJUnitRunner(suiteClass: java.lang.Class[Properties]) extends org
   }
 
   // Our custom tes callback, used to keep JUnit's runner updated about test progress
-  class CustomTestCallback(notifier:RunNotifier, desc: Description) extends Test.TestCallback {
+  class CustomTestCallback(notifier:RunNotifier, desc: Description) extends ScalaCheckTest.TestCallback {
     // TODO: is it even possible to obtain the correct stack trace? ScalaCheck doesn't throw Exceptions for property failures!
     def failure = new Failure(desc, new Throwable("ScalaCheck property did not hold true"))
 
     /** Called whenever a property has finished testing */
-    override def onTestResult(name: String, res: Test.Result) = {
+    override def onTestResult(name: String, res: ScalaCheckTest.Result) = {
       res.status match {
-        case Test.Passed => {} // Test passed, nothing to do
-        case Test.Proved(_) => {} // Test passed, nothing to do
-        case Test.Exhausted => notifier.fireTestIgnored(desc) // exhausted tests are marked as ignored in JUnit
+        case ScalaCheckTest.Passed => {} // Test passed, nothing to do
+        case ScalaCheckTest.Proved(_) => {} // Test passed, nothing to do
+        case ScalaCheckTest.Exhausted => notifier.fireTestIgnored(desc) // exhausted tests are marked as ignored in JUnit
         case _ => notifier.fireTestFailure(failure) // everything else is a failed test
       }
     }
@@ -77,7 +72,7 @@ class ScalaCheckJUnitRunner(suiteClass: java.lang.Class[Properties]) extends org
           print("Running property: " + desc)
 
           notifier.fireTestStarted(descObj)
-          SchkTest.check(Parameters.default.withTestCallback(testCallback = consoleReporter chain (new CustomTestCallback(notifier, descObj))), prop)
+          ScalaCheckTest.check(Parameters.default.withTestCallback(testCallback = consoleReporter chain (new CustomTestCallback(notifier, descObj))), prop)
           notifier.fireTestFinished(descObj)
         }
       }

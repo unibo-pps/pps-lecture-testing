@@ -1,4 +1,4 @@
-package testLecture.code
+package testLecture.code.e2testDoubles
 
 import org.junit.runner.RunWith
 import org.scalamock.scalatest.MockFactory

@@ -1,4 +1,4 @@
-package testLecture.code
+package testLecture.code.e1scalatest
 
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
@@ -47,4 +47,8 @@ class BasicFunSpec extends FunSpec with Matchers {
   describe("Two sets") {
     pending
   }
+}
+
+class ScalaTestExampleWithoutRunWithAnnotation extends FunSuite {
+  test("simple test"){ }
 }

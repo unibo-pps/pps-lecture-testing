@@ -1,9 +1,9 @@
-package testLecture.code
+package testLecture.code.e3propertyBased
 
 import org.junit.runner.RunWith
-import org.scalacheck.{Arbitrary, Gen, Prop, Properties}
 import org.scalacheck.Prop.{exists, forAll}
-import org.scalatest.junit.JUnitRunner
+import org.scalacheck.{Arbitrary, Gen, Prop, Properties}
+import testLecture.ScalaCheckJUnitRunner
 
 // https://github.com/oscarrenalias/scalacheck-cookbook/blob/master/markdown/scalacheck-integration.md
 @RunWith(classOf[ScalaCheckJUnitRunner])
