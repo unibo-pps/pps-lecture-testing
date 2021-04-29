@@ -1,0 +1,68 @@
+plugins {
+    id 'java'
+    id 'scala'
+    id "org.scoverage" version "3.0.0"
+    //id "com.github.maiflai.scalatest" version "0.21"
+    //id "com.commercehub.cucumber-jvm" version "0.11"
+    id 'idea'
+}
+
+repositories { mavenCentral()  }
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.12.2'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.scalatest:scalatest_2.12:3.0.1'
+    testRuntime 'org.pegdown:pegdown:1.4.2'
+    //testCompile 'org.devzendo:scalacheck-contrib_2.11:1.0.0'
+    scoverage 'org.scoverage:scalac-scoverage-plugin_2.12:1.3.1', 'org.scoverage:scalac-scoverage-runtime_2.12:1.3.1'
+
+    testCompile "org.scalacheck:scalacheck_2.12:1.14.0"
+
+    testCompile "io.cucumber:cucumber-scala_2.12:2.0.1"
+    testCompile "io.cucumber:cucumber-junit:2.4.0" // needed for runner (cucumber.api.junit.Cucumber)
+    //testCompile "io.cucumber:cucumber-java:2.4.0"
+
+    testCompile "org.seleniumhq.selenium:selenium-java:2.35.0"
+}
+
+tasks.withType(ScalaCompile) {
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
+}
+
+test {
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testRuntime
+    }
+}
+task cuke(type: JavaExec) {
+    main = "cucumber.api.cli.Main"
+    classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+    args = ['--plugin', 'pretty', '--glue', '', 'src/test/resources']
+}
+task props(type: JavaExec) {
+    main = "org.scalacheck.Test"
+    classpath = sourceSets.main.output + sourceSets.test.output
+    args = ['--plugin', 'pretty', '--glue', '', 'src/test/resources']
+}
+
+//test.dependsOn cuke // needed if ScalaTest plugin is activated
+
+task scalaTest(dependsOn: ['testClasses'], type: JavaExec) {
+    main = 'org.scalatest.tools.Runner'
+    args = ['-R', 'build/classes/test', '-o']
+    classpath = sourceSets.test.runtimeClasspath
+}
+
+test.dependsOn scalaTest
+
+// gradle test --rerun-tasks
+// gradle cuke --rerun-tasks
+//   In IntelliJ, run Cucumber features via RunCucumberTests
