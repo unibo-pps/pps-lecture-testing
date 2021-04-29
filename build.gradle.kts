@@ -28,9 +28,10 @@ dependencies {
     testImplementation("org.seleniumhq.selenium:selenium-java:2.35.0")
 
     // testImplementation("junit:junit:4.12") // Junit 4
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.1.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.1.0")
-    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.1.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+    testImplementation("org.junit.platform:junit-platform-launcher:1.7.1") // for org.junit.platform stuff (cf. SomeJUnit5Runner)
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.7.1")
 }
 
 tasks.withType<ScalaCompile> {
