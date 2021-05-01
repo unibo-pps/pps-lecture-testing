@@ -29,4 +29,4 @@ lazy val root = (project in file("."))
 // Run by:  sbt> cucumber
 enablePlugins(CucumberPlugin)
 
-CucumberPlugin.glue := "testLecture/code/steps"
+CucumberPlugin.glue := "testLecture/code/e4bdd/steps"
