@@ -31,7 +31,7 @@ dependencies {
 
     // testImplementation("junit:junit:4.12") // Junit 4
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
     testImplementation("org.junit.platform:junit-platform-launcher:1.7.1") // for org.junit.platform stuff (cf. SomeJUnit5Runner)
     testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.7.1")
 
