@@ -1,1 +1,1 @@
-rootProject.name = "pps-lab-testing"
+rootProject.name = "pps-lecture-testing"
