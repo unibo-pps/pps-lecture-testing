@@ -47,4 +47,14 @@ class TestPersons extends Properties("Persons") {
   property("Adultness") = forAll(adultPersonGen) { case (p: Person) =>
     p.adult
   }
+  
+  implicit val arbitraryPerson = Arbitrary(
+    for(name <- Arbitrary(Gen.oneOf("Bob","Rick")).arbitrary;
+        age <- Arbitrary(Gen.chooseNum(0,100)).arbitrary.suchThat(x => x >= 18))
+      yield Person(name, age))
+
+  // Using an Arbitrary[Person] (a kind of default generator for a type)
+  property("Adultness 2") = forAll { (p: Person) =>
+    Prop.collect(p){ p.adult }
+  }
 }
