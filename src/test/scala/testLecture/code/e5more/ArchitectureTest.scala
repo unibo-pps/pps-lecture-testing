@@ -6,13 +6,9 @@ import com.tngtech.archunit.lang.ArchRule
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition._
 import org.junit.jupiter.api.Test
 
-class MyArchitectureTest {
+class MyArchitectureTest:
   @Test
-  def someArchitecturalRule() {
+  def someArchitecturalRule(): Unit =
     val importedClasses: JavaClasses = new ClassFileImporter().importPackages("testLab")
-
     val rule: ArchRule  = classes().should().accessClassesThat().resideInAPackage("testLab")
-
     rule.check(importedClasses)
-  }
-}

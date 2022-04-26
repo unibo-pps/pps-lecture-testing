@@ -1,16 +1,18 @@
 package testLecture.code.e3propertyBased
 
-import org.junit.runner.RunWith
+// import org.junit.runner.RunWith
 import org.scalacheck.{Gen, Prop}
-import org.scalatest.junit.JUnitRunner
-import org.scalatest.prop.{Checkers, PropertyChecks}
-import org.scalatest.{Matchers, PropSpec}
+// import org.scalatest.junit.JUnitRunner
+import org.scalatestplus.scalacheck.Checkers
+import org.scalatest.prop.TableDrivenPropertyChecks
+import org.scalatest.matchers.should._
+import org.scalatest.propspec.AnyPropSpec
 
 import scala.collection.immutable.{BitSet, HashSet, TreeSet}
 
-@RunWith(classOf[JUnitRunner])
-class SetSpec extends PropSpec with PropertyChecks with Checkers with Matchers {
-  val examples = Table("set",BitSet.empty, HashSet.empty[Int], TreeSet.empty[Int])
+// @RunWith(classOf[JUnitRunner])
+class SetSpec extends AnyPropSpec with TableDrivenPropertyChecks with Checkers with Matchers:
+  val examples = Table("set", BitSet.empty, HashSet.empty[Int], TreeSet.empty[Int])
   val examplesGen = Gen.oneOf(BitSet.empty, HashSet.empty[Int], TreeSet.empty[Int])
 
   property("an empty Set should have size 0") {
@@ -28,4 +30,3 @@ class SetSpec extends PropSpec with PropertyChecks with Checkers with Matchers {
       Prop.throws(classOf[NoSuchElementException])(set.head) }
     }
   }
-}
