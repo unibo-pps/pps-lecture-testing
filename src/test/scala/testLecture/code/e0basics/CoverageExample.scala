@@ -1,6 +1,5 @@
 package testLecture.code.e0basics
 
-import org.junit.runner.RunWith
 import org.scalatest.funsuite.AnyFunSuite
 import testLecture.code.ProgramToCover
 
