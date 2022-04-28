@@ -1,17 +1,19 @@
 package testLecture.code.e5more
 
 import org.junit.runner.RunWith
-import org.scalatest.concurrent.Eventually._
-import org.scalatest.junit.JUnitRunner
-import org.scalatest.selenium._
-import org.scalatest.{FlatSpec, Matchers}
+import org.openqa.selenium.By
+import org.scalatest.concurrent.Eventually.*
+import org.scalatest.matchers.should.Matchers
+import org.scalatestplus.selenium.HtmlUnit
+import org.scalatest.flatspec.AnyFlatSpec
 
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 
-@RunWith(classOf[JUnitRunner])
-class GoogletestSpec extends FlatSpec with Matchers with HtmlUnit {
-
+class GoogletestSpec extends AnyFlatSpec with Matchers with HtmlUnit:
   "Google search" should "work" in {
+    this.webDriver.setJavascriptEnabled(false) // to avoid scripting exceptions
+    pending // must by-pass the cookie consent -- cf. https://stackoverflow.com/questions/65798231/selenium-webdriver-how-to-bypass-google-accept-cookies-dialog-box
+
     go to "http://www.google.com"
     pageTitle should be ("Google")
     executeScript("return document.title") shouldEqual pageTitle
@@ -20,8 +22,7 @@ class GoogletestSpec extends FlatSpec with Matchers with HtmlUnit {
     textField("q").value = "selenium"
     submit()
 
-    eventually(timeout(2 seconds)) {
+    eventually(timeout(2.seconds)) {
       pageTitle should startWith ("selenium - ")
     }
   }
-}

@@ -1,9 +1,9 @@
 package testLecture.code.e4bdd.steps
 
-import cucumber.api.scala.{EN, ScalaDsl}
+import io.cucumber.scala.{EN, ScalaDsl}
 import org.junit.Assert
 
-class MyFeatureSteps extends ScalaDsl with EN {
+class MyFeatureSteps extends ScalaDsl with EN:
   var (a, b, sum) = (0, 0, 0)
 
   Given("""^one operand (\d+)$"""){ a = (_:Int) }
@@ -12,4 +12,3 @@ class MyFeatureSteps extends ScalaDsl with EN {
   Then("""^I should obtain result (\d+)$"""){ (expectedSum:Int) =>
     Assert.assertEquals(expectedSum, sum)
   }
-}

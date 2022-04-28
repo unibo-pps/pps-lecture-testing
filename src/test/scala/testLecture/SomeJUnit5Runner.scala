@@ -11,10 +11,10 @@ import testLecture.code.e0junit.BTreesTest
 /**
   * Example to show how JUnit Platform may be used to run tests, programmatically.
   */
-class SomeJUnit5Runner {
+class SomeJUnit5Runner:
   val listener = new SummaryGeneratingListener()
 
-  def runOne(): Unit = {
+  def runOne(): Unit =
     val request = LauncherDiscoveryRequestBuilder.request
       .selectors(selectClass(classOf[BTreesTest]))
       .selectors(selectPackage("testLecture"))
@@ -22,19 +22,20 @@ class SomeJUnit5Runner {
     val launcher = LauncherFactory.create
     val testPlan = launcher.discover(request)
     println(testPlan.getRoots)
-    import scala.collection.JavaConverters._
-    for(r <- testPlan.getRoots.iterator().asScala;
-        d <- testPlan.getDescendants(r).asScala if d.isTest) {
+    import scala.jdk.CollectionConverters._
+    for
+      r <- testPlan.getRoots.iterator().asScala
+      d <- testPlan.getDescendants(r).asScala
+      if d.isTest
+    do
       println(d)
-    }
     launcher.registerTestExecutionListeners(listener)
     launcher.execute(request)
-  }
-}
 
-object SomeJUnit5Runner extends App {
-  val runner = new SomeJUnit5Runner
-  runner.runOne()
-  val summary = runner.listener.getSummary
-  summary.printTo(new PrintWriter(System.out))
-}
+object SomeJUnit5Runner:
+  @main def main() =
+    val runner = new SomeJUnit5Runner
+    runner.runOne()
+    val summary = runner.listener.getSummary
+    summary.printTo(new PrintWriter(System.out))
+

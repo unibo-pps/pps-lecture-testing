@@ -1,11 +1,12 @@
 package testLecture
 
-import cucumber.api.CucumberOptions
-import cucumber.api.junit.Cucumber
-import org.junit.runner.RunWith
+import org.junit.platform.suite.api.{ConfigurationParameter, IncludeEngines, SelectClasspathResource, Suite}
+import io.cucumber.junit.platform.engine.Constants.{FILTER_TAGS_PROPERTY_NAME, GLUE_PROPERTY_NAME, PLUGIN_PROPERTY_NAME}
 
-@RunWith(classOf[Cucumber])
-@CucumberOptions(features = Array("classpath:features/MyFeature.feature"),
-  tags = Array("not @Wip"), glue = Array("classpath:testLecture.code.e4bdd.steps"),
-  plugin = Array("pretty", "html:target/cucumber/html"))
+@Suite
+@IncludeEngines(Array("cucumber","scalatest"))
+@SelectClasspathResource("features/MyFeature.feature")
+@ConfigurationParameter(key = FILTER_TAGS_PROPERTY_NAME, "not @Wip")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "testLecture.code.e4bdd.steps")
+// @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty; html:target/cucumber/html")
 class RunCucumberTests

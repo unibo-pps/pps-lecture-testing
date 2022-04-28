@@ -1,13 +1,20 @@
 package testLecture.code.e2testDoubles
 
+/*
 import org.junit.runner.RunWith
-import org.scalamock.scalatest.MockFactory
-import org.scalatest.junit.JUnitRunner
-import org.scalatest.{FunSuite, Matchers}
+import org.mockito.Mockito
+import org.mockito.ArgumentMatchers.*
+// import org.scalamock.scalatest.MockFactory
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+// import org.scalatest.junit.JUnitRunner
+// import org.scalatest.{FunSuite, Matchers}
 import testLecture.code.Server._
 
-@RunWith(classOf[JUnitRunner])
-class TestWithMock extends FunSuite with MockFactory with Matchers {
+// @RunWith(classOf[JUnitRunner])
+
+class TestWithMock extends AnyFunSuite with MockitoSugar with Matchers: // MockFactory :
   test("Test server with cache"){
     // Mocks/stubs for dependencies
     val cacheMock = mock[Cache[Request,Response]]
@@ -22,13 +29,16 @@ class TestWithMock extends FunSuite with MockFactory with Matchers {
     val expectedResponse = Response(request.body+"'s Response")
 
     // Mock expectations
-    inSequence {
-      (cacheMock.cached _).expects(request).returning(false)
-      (cacheMock.put _).expects(request, *)
-      (cacheMock.cached _).expects(request).returning(true)
-      (cacheMock.get _).expects(request).returning(expectedResponse)
-    }
-    
+    Mockito.when(cacheMock.cached(request)).thenReturn(false)
+    Mockito.verify(cacheMock).put(request, any())
+    Mockito.verifyNoInteractions(cacheMock)
+//    inSequence {
+//      (cacheMock.cached _).expects(request).returning(false)
+//      (cacheMock.put _).expects(request, *)
+//      (cacheMock.cached _).expects(request).returning(true)
+//      (cacheMock.get _).expects(request).returning(expectedResponse)
+//    }
+
     // Act + Assert
     server.serve(request) shouldEqual expectedResponse
     server.serve(request) shouldEqual expectedResponse
@@ -36,4 +46,4 @@ class TestWithMock extends FunSuite with MockFactory with Matchers {
 
     cacheableStub.verify(request).twice() // (cf., test spy)
   }
-}
+*/
