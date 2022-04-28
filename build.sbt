@@ -15,6 +15,7 @@ lazy val root = (project in file("."))
       "org.junit.jupiter" % "junit-jupiter-engine" % junitJupiterVersion % Test, // for org.junit.platform
       "org.junit.vintage" % "junit-vintage-engine" % junitJupiterVersion % Test,
       "org.junit.platform" % "junit-platform-launcher" % junitPlatformVersion % Test,
+      "org.junit.platform" % "junit-platform-commons" % junitPlatformVersion % Test,
       "org.junit.platform" % "junit-platform-engine" % junitPlatformVersion % Test,
       "org.junit.platform" % "junit-platform-suite-api" % junitPlatformVersion % Test,
       "net.aichler" % "jupiter-interface" % "0.8.4" % Test,
@@ -37,5 +38,4 @@ lazy val root = (project in file("."))
 // Cucumber configuration
 // Run by:  sbt> cucumber
 enablePlugins(CucumberPlugin)
-
-CucumberPlugin.glue := "testLecture/code/e4bdd/steps"
+CucumberPlugin.glues := List("testLecture/code/e4bdd/steps")

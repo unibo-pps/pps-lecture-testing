@@ -14,6 +14,7 @@ class BasicFlatSpec extends AnyFlatSpec with Matchers:
   "An empty set" should "have size 0" in {
     assert(Set.empty.size == 0)
     Set.empty.size shouldBe 0
+    Set.empty should have size 0
   }
 
   it should "raise NoSuchElementException for head" in {
@@ -53,6 +54,14 @@ class BasicFunSpec extends AnyFunSpec with Matchers:
 
   describe("Two sets") {
     pending
+  }
+
+
+import org.scalatest.matchers.must.{ Matchers as MustMatchers }
+
+class StringSuite extends AnyFunSuite with MustMatchers:
+  test("Some check with regex") {
+    "abbccxxx" must startWith regex ("a(b*)(c*)" withGroups ("bb", "cc"))
   }
 
 class ScalaTestExampleWithoutRunWithAnnotation extends AnyFunSuite:

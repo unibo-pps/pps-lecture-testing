@@ -1,13 +1,9 @@
 package testLecture.code.e3propertyBased
 
-import org.junit.runner.RunWith
 import org.scalacheck.Prop.{exists, forAll}
 import org.scalacheck.{Arbitrary, Gen, Prop, Properties}
-// import testLecture.ScalaCheckJUnitRunner
 
-// https://github.com/oscarrenalias/scalacheck-cookbook/blob/master/markdown/scalacheck-integration.md
-// @RunWith(classOf[ScalaCheckJUnitRunner])
-class TestOnNumbers extends Properties("Numbers"):
+class TestOnNumbers extends Properties("Integers"):
   property("Sum is associative") = forAll{ (a: Int, b: Int, c: Int) =>
     (a+b)+c == a+(b+c)
   }
@@ -22,7 +18,6 @@ class TestOnNumbers extends Properties("Numbers"):
   }
 end TestOnNumbers
 
-// @RunWith(classOf[ScalaCheckJUnitRunner])
 class TestOnLists extends Properties("Seqs"):
   def genericSizeProp[A:Arbitrary]: Prop =
     forAll { (l1: Seq[A], l2: Seq[A]) => (l1++l2).size == l1.size + l2.size }
@@ -33,7 +28,6 @@ class TestOnLists extends Properties("Seqs"):
     forAll { (l1: Seq[Int], l2: Seq[Int]) => l1.reverse.reverse == l1 }
 end TestOnLists
 
-// @RunWith(classOf[ScalaCheckJUnitRunner])
 class TestPersons extends Properties("Persons"):
   import TestPersons.Person
 

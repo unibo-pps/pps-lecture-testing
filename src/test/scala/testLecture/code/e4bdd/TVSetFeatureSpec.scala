@@ -1,6 +1,5 @@
 package testLecture.code.e4bdd
 
-import org.junit.runner.RunWith
 import org.scalatest.GivenWhenThen
 import org.scalatest.featurespec.AnyFeatureSpec
 
