@@ -1,8 +1,6 @@
 package testLecture.code.e3propertyBased
 
-// import org.junit.runner.RunWith
 import org.scalacheck.{Gen, Prop}
-// import org.scalatest.junit.JUnitRunner
 import org.scalatestplus.scalacheck.Checkers
 import org.scalatest.prop.TableDrivenPropertyChecks
 import org.scalatest.matchers.should._
@@ -10,7 +8,6 @@ import org.scalatest.propspec.AnyPropSpec
 
 import scala.collection.immutable.{BitSet, HashSet, TreeSet}
 
-// @RunWith(classOf[JUnitRunner])
 class SetSpec extends AnyPropSpec with TableDrivenPropertyChecks with Checkers with Matchers:
   val examples = Table("set", BitSet.empty, HashSet.empty[Int], TreeSet.empty[Int])
   val examplesGen = Gen.oneOf(BitSet.empty, HashSet.empty[Int], TreeSet.empty[Int])

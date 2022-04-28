@@ -2,7 +2,6 @@ package testLecture.code.e0basics
 
 import org.junit.runner.RunWith
 import org.scalatest.funsuite.AnyFunSuite
-// import org.scalatestplus.junit.JUnitRunner
 import testLecture.code.ProgramToCover
 
 // sbt
@@ -10,14 +9,12 @@ import testLecture.code.ProgramToCover
 // > testOnly *ConditionCoverageExample
 // > coverageReport
 
-// @RunWith(classOf[JUnitRunner])
 class ConditionCoverageExample extends AnyFunSuite:
   test("Cover all the conditions") {
     ProgramToCover.methodToCover(false, true, false, true, true)
     ProgramToCover.methodToCover(true, false, true, false, false)
   }
 
-// @RunWith(classOf[JUnitRunner])
 class DecisionCoverageExample extends AnyFunSuite:
   test("Cover all the decision branches") {
     ProgramToCover.methodToCover(true, true, false, false, true)

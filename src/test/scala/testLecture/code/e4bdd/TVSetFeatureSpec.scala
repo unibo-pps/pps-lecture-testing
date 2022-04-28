@@ -2,17 +2,14 @@ package testLecture.code.e4bdd
 
 import org.junit.runner.RunWith
 import org.scalatest.GivenWhenThen
-//import org.scalatest.junit.JUnitRunner
 import org.scalatest.featurespec.AnyFeatureSpec
 
-class TVSet {
+class TVSet:
   private var on: Boolean = false
   def isOn: Boolean = on
   def pressPowerButton(): Unit =
     on = !on
-}
 
-// @RunWith(classOf[JUnitRunner])
 class TVSetSpec extends AnyFeatureSpec with GivenWhenThen:
   info("As a TV set owner")
   info("I want to be able to turn the TV on and off")

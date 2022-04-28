@@ -22,7 +22,6 @@ lazy val root = (project in file("."))
       //"org.seleniumhq.selenium" % "selenium-java" % "2.35.0" % Test,
       "org.scalatestplus" %% "selenium-4-1" % "3.2.11.0" % Test,
       "io.cucumber" %% "cucumber-scala" % "8.2.6" % Test,
-      // N.B.: Cucumber is based on JUnit 4. If you’re using JUnit 5, remember to include junit-vintage-engine dependency, as well.
       "io.cucumber" % "cucumber-junit-platform-engine" % "7.3.2" % Test,
       //"org.scalacheck" %% "scalacheck" % "1.16.0" % Test,
       "org.scalatestplus" %% "scalacheck-1-15" % "3.2.10.0" % Test,
