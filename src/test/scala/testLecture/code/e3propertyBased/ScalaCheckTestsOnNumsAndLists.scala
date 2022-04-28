@@ -3,7 +3,7 @@ package testLecture.code.e3propertyBased
 import org.scalacheck.Prop.{exists, forAll}
 import org.scalacheck.{Arbitrary, Gen, Prop, Properties}
 
-class TestOnNumbers extends Properties("Integers"):
+class TestOnIntegers extends Properties("Integers"):
   property("Sum is associative") = forAll{ (a: Int, b: Int, c: Int) =>
     (a+b)+c == a+(b+c)
   }
@@ -16,7 +16,7 @@ class TestOnNumbers extends Properties("Integers"):
   property("Diff is not associative") = forAll{ (a: Int, b: Int) =>
     exists { (c:Int) => (a-b)-c != a-(b-c) }
   }
-end TestOnNumbers
+end TestOnIntegers
 
 class TestOnLists extends Properties("Seqs"):
   def genericSizeProp[A:Arbitrary]: Prop =

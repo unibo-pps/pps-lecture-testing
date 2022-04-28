@@ -1,5 +1,6 @@
 package testLecture.code.e2testDoubles
 
+/*
 import org.junit.runner.RunWith
 import org.mockito.Mockito
 import org.mockito.ArgumentMatchers.*
@@ -12,7 +13,7 @@ import org.scalatest.matchers.should.Matchers
 import testLecture.code.Server._
 
 // @RunWith(classOf[JUnitRunner])
-/*
+
 class TestWithMock extends AnyFunSuite with MockitoSugar with Matchers: // MockFactory :
   test("Test server with cache"){
     // Mocks/stubs for dependencies
