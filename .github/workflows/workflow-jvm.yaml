@@ -1,7 +1,7 @@
 name: test workflow
 on:
   push:
-    paths: [src/**']
+    branches: *
   workflow_dispatch:
 jobs:
   run-tests:
