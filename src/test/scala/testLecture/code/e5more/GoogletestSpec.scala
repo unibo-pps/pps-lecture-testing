@@ -1,6 +1,5 @@
 package testLecture.code.e5more
 
-import org.junit.runner.RunWith
 import org.openqa.selenium.By
 import org.scalatest.concurrent.Eventually.*
 import org.scalatest.matchers.should.Matchers
