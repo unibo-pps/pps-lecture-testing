@@ -5,4 +5,4 @@ addSbtPlugin("com.waioeka.sbt" % "cucumber-plugin" % "0.3.1")
 addDependencyTreePlugin
 
 resolvers += Resolver.jcenterRepo
-addSbtPlugin("net.aichler" % "sbt-jupiter-interface" % "0.9.0")
+addSbtPlugin("net.aichler" % "sbt-jupiter-interface" % "0.9.1")
